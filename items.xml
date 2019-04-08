@@ -118,6 +118,11 @@
     <ingredient idref="gear" count="1" />
     <ingredient idref="iron" count="1" />
   </item>
+  <item id="fast_inserter" name="Fast Inserter" time="1/2" produced="1">
+    <ingredient idref="circuit" count="2" />
+    <ingredient idref="inserter" count="1" />
+    <ingredient idref="iron" count="2" />
+  </item>
   <item id="low_density_struct" name="Low Density Struct" time="20" produced="1">
     <ingredient idref="steel" count="2" />
     <ingredient idref="copper" count="20" />

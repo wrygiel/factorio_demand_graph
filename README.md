@@ -1,66 +1,79 @@
-# Python Factorio Calculator #
+# Factorio DemandGraph
 
-This is a simple calculator for the game [Factorio][Factorio].  Since I
-like rational numbers and the ratios in the game are usually best
-expressed this way, it does all math with fractions from Python's
-fractions module.
+## Similarities to Python Factorio Calculator
 
-If you're seeing this on GitHub, I'm a Mercurial user, so this is a
-mirror of the actual [repository on bitbucket][bitbucket_repo].
+This is "kind of" a fork of the [Python Factorio Calculator][orig-repo]
+by user [Omnifarious][orig-author-github].
 
-It requires Python 3.6 to work, mostly because I really like `f''`
-strings.  I'm also not much of a fancy UI guy, so it just has a bunch of
-functions that do the kinds of things I need.
+"Kind of" because:
 
-The module is designed to be used like this:
+* I found the original calculator very cool, but I missed some features.
 
-    >>> from fractions import Fraction as F
-    >>> import factorio_calc as fc; from factorio calc import item_db as idb
-    >>> fc.print_factories(
-    ...     fc.factories_for_each(
-    ...         idb['Yellow Science'],
-    ...         F(1,4),
-    ...         raw_materials=(idb['Circuit'],
-    ...                        idb['Copper'],
-    ...                        idb['Plastic'],
-    ...                        idb['Battery'],
-    ...                        idb['Speed Module 1'],
-    ...                        idb['Sulfur'],
-    ...                        idb['Iron'])))
-    Factories   (as a fraction)   Rate      Name
-    ---------   ---------------   -------   ---------------------
-            2               7/4       1/4   Yellow Science
-            4              15/4       3/8   Processing unit
-            5               9/2       3/4   Adv Circuit
-            2             27/16      27/4   Wire
-            1              3/80      15/8   Sulfuric Acid
-                                      1/8   Battery
-                                        9   Circuit
-                                      3/2   Plastic
-                                     27/8   Copper
-                                     3/16   Sulfur
-                                     3/80   Iron
-                                     15/4   Water
-                                      1/8   Speed Module 1
+* Initially I wanted to extend the original calculator, but while trying to add
+  features, I have found myself in need to rewrite majority of the internals
+  (primarilly to understand them better).
 
-For items specified as raw materials (or for items that have no
-ingredients) it will simply list the rate at which they must be produced
-for the given rate. All rates are in items/sec.
+* Once I realized that my change is just too big, I have also removed most of
+  the original functionalities and replaced them with the graph-generating
+  feature.
 
-I don't print out dependencies because I don't feel it's terribly useful
-when building a factory.  You can look at the dependencies in the game
-and figure out how to hook things up so that it all works.  What you
-really need for planning is an idea of how many of which kinds of
-factory you need, and what sorts of supplies you'll need to provide.
+This program still uses exactly the same XML file format which the original
+Calculator does. Also, similarly to the Calculator, it isn't able to handle Oil
+dependencies well (the file assumes that each factory produces exactly one type
+of output).
 
-For example, in the above build, I have a main bus for the copper,
-plastic, circuits, water, and iron.  The rates required for batteries,
-sulfur, and speed modules are low enough that I'm comfortable with using
-the logistics network to fly them in from other places in my factory
-where they're made.  This will yield at least 1 Yellow Science every 4
-seconds, and all the fractional factories tell me I will probably get
-more production out of it.  I could use the `actual_production` function
-to figure out just how much.
+## How to use it
 
-[Factorio]: https://www.factorio.com/
-[bitbucket_repo]: https://www.bitbucket.org/omnifarious/factorio_calc
+You describe your **demands** - how many of which items per second you need.
+The program generates a [DOT file][dot-lang] with all ingredients you need,
+along with their own demand on ingredients, etc.
+
+### Example 1
+
+Let's say that you want to set up your factories to give you one Black Science
+per second (that's how Military Science is called in the XML file).
+
+Running:
+
+```
+python3 runner.py "1 Black Science"
+```
+
+gives you this graph:
+
+![Graph 1](example1.png)
+
+Note, that the names in the XML file don't always match the names in the
+game. And some of the item types are considered "raw" even if they're not (e.g.
+"Copper" means "Copper Plate", and is considered "raw", and there's no "Copper
+Ore"). If you'd like to fix those, feel free to modify the XML file.
+
+### Example 2
+
+You can demand multiple items at the same time. All the demands will be summed
+up.
+
+Let's say that that you want:
+
+* The same amount of Black Science you got in the previous example,
+* 4 Bullets per second (that's how "Firearm magazines" are called in the file),
+* 100 Copper Wires per minute.
+
+Running:
+
+```
+python3 runner.py "1 Black Science + 4 Bullets + 100/60 Wire"
+```
+
+gives you this graph:
+
+![Graph 2](example2.png)
+
+As you might have expected, some numbers changed (required Iron smelters,
+number of Firearm magazine assembling machines, the demand on Copper Plate,
+etc.).
+
+
+[orig-repo]: https://github.com/Omnifarious/factorio_calc
+[orig-author-github]: https://github.com/Omnifarious
+[dot-lang]: https://en.wikipedia.org/wiki/DOT_(graph_description_language)
