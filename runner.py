@@ -40,7 +40,7 @@ def _parse_item_type(name):
     try:
         item_type = item_types[name]
     except:
-        raise Exception("Could not find %s in XML file" % (item_name,))
+        raise Exception("Could not find %s in XML file" % (name,))
     return item_type
 
 if __name__ == "__main__":
