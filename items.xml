@@ -299,4 +299,52 @@
     <ingredient idref="distractor" count="4" />
     <ingredient idref="speed_module_1" count="1" />
   </item>
+
+  <!-- Krastorio 2 items (that's barely started...) -->
+  <item id="k2_iron_ore" />
+  <item id="k2_iron_plate" time="16" produced="5">
+    <ingredient idref="k2_iron_ore" count="10" />
+  </item>
+  <item id="k2_automation_core" />
+  <item id="k2_coal" />
+  <item id="k2_water" />
+  <item id="k2_stone" />
+  <item id="k2_wood" time="60" produced="40">
+    <ingredient idref="k2_water" count="200" />
+  </item>
+  <item id="k2_iron_beam" time="2" produced="1">
+    <ingredient idref="k2_iron_plate" count="2" />
+  </item>
+  <item id="k2_iron_gear_wheel" time="0.5" produced="1">
+    <ingredient idref="k2_iron_plate" count="1" />
+  </item>
+  <item id="k2_transport_belt" time="0.5" produced="2">
+    <ingredient idref="k2_iron_plate" count="1" />
+    <ingredient idref="k2_iron_gear_wheel" count="1" />
+  </item>
+  <item id="k2_underground_belt" time="1" produced="2">
+    <ingredient idref="k2_iron_beam" count="2" />
+    <ingredient idref="k2_transport_belt" count="5" />
+  </item>
+  <item id="k2_splitter" time="1" produced="1">
+    <ingredient idref="k2_iron_gear_wheel" count="5" />
+    <ingredient idref="k2_automation_core" count="1" />
+    <ingredient idref="k2_transport_belt" count="4" />
+  </item>
+  <item id="k2_coke" time="16" produced="6">
+    <ingredient idref="k2_wood" count="6" />
+    <ingredient idref="k2_coal" count="6" />
+  </item>
+  <item id="k2_steel_plate" time="16" produced="5">
+    <ingredient idref="k2_coke" count="2" />
+    <ingredient idref="k2_iron_plate" count="10" />
+  </item>
+  <item id="k2_steel_beam" time="2" produced="1">
+    <ingredient idref="k2_steel_plate" count="2" />
+  </item>
+  <item id="k2_rail" time="0.5" produced="2">
+    <ingredient idref="k2_stone" count="2" />
+    <ingredient idref="k2_steel_beam" count="1" />
+  </item>
+
 </factorio_calc_item_db>
