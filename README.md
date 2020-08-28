@@ -73,6 +73,21 @@ As you might have expected, some numbers changed (required Iron smelters,
 number of Firearm magazine assembling machines, the demand on Copper Plate,
 etc.).
 
+### Example 3
+
+Quite often, you're not interested in some sections of the graph, because other
+parts of your factory already provide some items, and put them on the bus.
+
+You can specify which items you prefer to take from your bus:
+
+```
+python3 runner.py "1 Black Science" --bus "Steel, Copper, Bullets, Stone brick, Grenade"
+```
+
+This gives you a simplified graph:
+
+![Graph 3](example3.png)
+
 
 [orig-repo]: https://github.com/Omnifarious/factorio_calc
 [orig-author-github]: https://github.com/Omnifarious

@@ -164,18 +164,22 @@ class ItemTypeDemand:
         label = "\\n".join(self._get_label_lines(include_rate))
         return f'"{self.item_type._name}" [label="{label}"];'
 
-    def _get_edge_label_lines(self, ingredient_demand):
+    def _get_edge_label_lines(self, ingredient_demand, is_provided):
         """Generate a human-readable description on a demand on an ingredient.
 
         A *list* of lines of (plain) text is returned. It takes an intermediate
         demand as the argument (before this demand will be summed up with other
         demands on this ingredient in the graph).
         """
-        return [
-            "%.1f" % float(ingredient_demand.requested_rate) + "/s",
-        ]
+        lines = []
+        if is_provided:
+            lines.append(ingredient_demand.item_type._name)
+        lines.append(
+            "%.1f" % float(ingredient_demand.requested_rate) + "/s"
+        )
+        return lines
 
-    def get_dot_edgespecs(self):
+    def get_dot_edgespecs(self, provided_item_types):
         """Generate DOT statements with graph edges (links to ingredients).
 
         A *list* of DOT statements is returned."""
@@ -184,10 +188,17 @@ class ItemTypeDemand:
             return []
         result = []
         for demand in ingredient_demands:
-            label = "\\n".join(self._get_edge_label_lines(demand))
-            result.append(f'"{self.item_type._name}" -> "{demand.item_type._name}" [dir=back, label="{label}"];')
+            label = "\\n".join(self._get_edge_label_lines(
+                demand,
+                is_provided=demand.item_type in provided_item_types
+            ))
+            if demand.item_type in provided_item_types:
+                demand_key = "bus"
+            else:
+                demand_key = demand.item_type._name
+            result.append(f'"{self.item_type._name}" -> "{demand_key}" [dir=back, label="{label}"];')
         return result
- 
+
 class DemandGraph:
     """Describes a graph of ingredients required to satify a set of demands.
 
@@ -199,18 +210,30 @@ class DemandGraph:
 
     def __init__(self, initial_demands = []):
         """Takes a list of initial demands (the "roots" for the tree)."""
+        self.explicitly_demanded = set()
         self.nodes = {}
+        self.provided = set()
         self.parent_ptrs = {}
         for demand in initial_demands:
             self.add_new_demand(demand)
 
-    def add_new_demand(self, demand):
+    def add_new_provided(self, item_type):
+        """State that a given item_type is provided (i.e. on a bus).
+
+        Provided items will be taken from a single "bus" node. This will
+        simplify the output graph.
+        """
+        self.provided.add(item_type)
+
+    def add_new_demand(self, demand, explicit):
         """Append a new demand to the graph.
 
         This new demand, along with all its ingredient demands, will be
         cummulatively added up to the existing graph of demands.
         """
         assert isinstance(demand, ItemTypeDemand)
+        if explicit:
+            self.explicitly_demanded.add(demand.item_type)
         key = demand.item_type._name
         if key in self.nodes:
             # Some demand for this item already exists. We'll need to merge.
@@ -224,7 +247,7 @@ class DemandGraph:
         subdemands = demand.required_ingredients_demand()
         if subdemands is not None:
             for subdemand in subdemands:
-                child = self.add_new_demand(subdemand)
+                child = self.add_new_demand(subdemand, explicit=False)
                 self.parent_ptrs[child.item_type._name][key] = demand
         return self.nodes[key]
 
@@ -245,20 +268,37 @@ class DemandGraph:
         label = "\\l".join(label_lines)
         return "{ legend [shape=none, margin=0, label=\"" + label + "\\l\"]; }"
 
+    def _generate_bus_node(self):
+        return "bus [label=\"Bus\"];"
+
+    def _is_explicitly_reachable(self, node):
+        if node.item_type in self.explicitly_demanded:
+            return True
+        for demanding_node in self.parent_ptrs[node.item_type._name].values():
+            if demanding_node.item_type in self.provided:
+                continue
+            if self._is_explicitly_reachable(demanding_node):
+                return True
+        return False
+
     def generate_dot_graph(self, file=None):
         """Generate a representation of the graph in the DOT language.
 
         A multiline string is returned."""
         lines = []
         lines.append("digraph G {")
+        if len(self.provided) > 0:
+            lines.append("  " + self._generate_bus_node())
         for node in self.nodes.values():
-
-
+            if node.item_type in self.provided:
+                continue
+            if not self._is_explicitly_reachable(node):
+                continue
             include_rate_in_node_label = \
                 len(self.parent_ptrs[node.item_type._name]) != 1
             lines.append("  " + node.get_dot_nodespec(
                 include_rate=include_rate_in_node_label))
-            for edgespec in node.get_dot_edgespecs():
+            for edgespec in node.get_dot_edgespecs(self.provided):
                 lines.append("  " + edgespec)
         lines.append("  " + self._get_legend())
         lines.append("}")
