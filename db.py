@@ -81,7 +81,7 @@ class ItemTypeDb(set):
             raise ValueError(f"Invalid item {itemid}")
         if itemid in item_idmap:
             raise ValueError(f"Item {itemid} defined twice.")
-        name = itemel.attrib['name']
+        name = itemel.attrib.get('name', itemid)
         time = itemel.attrib.get('time', None)
         produced = itemel.attrib.get('produced', None)
         if (produced is None) != (time is None):
