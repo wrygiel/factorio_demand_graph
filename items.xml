@@ -299,6 +299,16 @@
     <ingredient idref="distractor" count="4" />
     <ingredient idref="speed_module_1" count="1" />
   </item>
+  <item id="laser_turret" name="Laser Turret" time="20" produced="1">
+    <ingredient idref="battery" count="12" />
+    <ingredient idref="circuit" count="20" />
+    <ingredient idref="steel" count="20" />
+  </item>
+  <item id="big_pole" name="Big Pole" time="0.5" produced="1">
+    <ingredient idref="copper" count="5" />
+    <ingredient idref="iron_stick" count="8" />
+    <ingredient idref="steel" count="5" />
+  </item>
 
   <!-- Krastorio 2 items (that's barely started...) -->
   <item id="k2_iron_ore" />
