@@ -319,6 +319,7 @@
   <item id="k2_coal" />
   <item id="k2_water" />
   <item id="k2_stone" />
+  <item id="k2_copper_plate" />
   <item id="k2_wood" time="60" produced="40">
     <ingredient idref="k2_water" count="200" />
   </item>
@@ -357,4 +358,230 @@
     <ingredient idref="k2_steel_beam" count="1" />
   </item>
 
+  <item id="k2_electronic_circuit" />
+  <item id="k2_petroleum_gas" />
+  <item id="k2_plastic_bar" time="1" produced="2">
+  	<ingredient idref="k2_coal" count="1" />
+  	<ingredient idref="k2_petroleum_gas" count="20" />
+  </item>
+  <item id="k2_sand" time="1" produced="7"> <!-- WRTODO: 7.5 -->
+  	<ingredient idref="k2_stone" count="3" />
+  </item>
+  <item id="k2_quartz" time="2.1" produced="6">
+  	<ingredient idref="k2_sand" count="10" />
+  	<ingredient idref="k2_water" count="10" />
+  </item>
+  <item id="k2_silcon" time="16" produced="9">
+  	<ingredient idref="k2_quartz" count="18" />
+  </item>
+  <item id="k2_glass" time="16" produced="8">
+  	<ingredient idref="k2_sand" count="16" />
+  </item>
+  <item id="k2_electronic_components" time="4" produced="4">
+  	<ingredient idref="k2_glass" count="2" />
+  	<ingredient idref="k2_silcon" count="2" />
+  	<ingredient idref="k2_plastic_bar" count="2" />
+  </item>
+  <item id="k2_copper_cable" time="0.5" produced="2">
+  	<ingredient idref="k2_copper_plate" count="1" />
+  </item>
+  <item id="k2_advanced_circuit" time="4" produced="2">
+  	<ingredient idref="k2_copper_cable" count="4" />
+  	<ingredient idref="k2_electronic_components" count="2" />
+  	<ingredient idref="k2_electronic_circuit" count="4" />
+  </item>
+
+  <item id="k2_blank_tech_card" />
+  <item id="k2_sulfur" time="1" produced="2">
+  	<ingredient idref="k2_water" count="30" />
+  	<ingredient idref="k2_petroleum_gas" count="30" />
+  </item>
+  <item id="k2_sulfuric_acid" time="1" produced="50">
+  	<ingredient idref="k2_iron_plate" count="1" />
+  	<ingredient idref="k2_sulfur" count="5" />
+  	<ingredient idref="k2_water" count="100" />
+  </item>
+  <item id="k2_chemical_tech_card" time="20" produced="5">
+  	<ingredient idref="k2_glass" count="15" />
+  	<ingredient idref="k2_advanced_circuit" count="5" />
+  	<ingredient idref="k2_blank_tech_card" count="5" />
+  	<ingredient idref="k2_sulfuric_acid" count="50" />
+  </item>
+
+  <item id="k2_battery" time="4" produced="1">
+  	<ingredient idref="k2_iron_plate" count="1" />
+  	<ingredient idref="k2_copper_plate" count="1" />
+  	<ingredient idref="k2_sulfuric_acid" count="20" />
+  </item>
+  <item id="k2_pipe" time="0.5" produced="1">
+  	<ingredient idref="k2_iron_plate" count="1" />
+  </item>
+  <item id="k2_engine_unit" time="10" produced="1">
+  	<ingredient idref="k2_iron_plate" count="1" />
+  	<ingredient idref="k2_iron_gear_wheel" count="1" />
+  	<ingredient idref="k2_pipe" count="2" />
+  </item>
+  <item id="k2_heavy_oil" />
+  <item id="k2_light_oil" />
+  <item id="k2_lubricant" time="1" produced="10">
+  	<ingredient idref="k2_heavy_oil" count="10" />
+  </item>
+  <item id="k2_electric_engine_unit" time="10" produced="1">
+  	<ingredient idref="k2_electronic_circuit" count="2" />
+  	<ingredient idref="k2_engine_unit" count="1" />
+  	<ingredient idref="k2_lubricant" count="15" />
+  </item>
+  <item id="k2_flying_robot_frame" time="20" produced="1">
+  	<ingredient idref="k2_steel_plate" count="1" />
+  	<ingredient idref="k2_battery" count="2" />
+  	<ingredient idref="k2_electronic_components" count="10" />
+  	<ingredient idref="k2_electric_engine_unit" count="1" />
+  </item>
+
+  <item id="k2_explosives" time="4" produced="2">
+  	<ingredient idref="k2_coal" count="1" />
+  	<ingredient idref="k2_sulfur" count="1" />
+  	<ingredient idref="k2_water" count="10" />
+  </item>
+  <item id="k2_empty_barrel" time="1" produced="1">
+  	<ingredient idref="k2_steel_plate" count="1" />
+  </item>
+  <item id="k2_grenade" time="8" produced="1">
+  	<ingredient idref="k2_coal" count="1" />
+  	<ingredient idref="k2_iron_plate" count="5" />
+  </item>
+  <item id="k2_cliff_explosives" time="8" produced="1">
+  	<ingredient idref="k2_explosives" count="1" />
+  	<ingredient idref="k2_empty_barrel" count="1" />
+  	<ingredient idref="k2_grenade" count="1" />
+  </item>
+
+  <item id="k2_oxygen" time="5" produced="30">
+  </item>
+  <item id="k2_ammonia" />
+  <item id="k2_hydrogen_chloride" />
+  <item id="k2_raw_rare_metals" />
+  <item id="k2_rare_metals" time="16" produced="5">
+  	<ingredient idref="k2_raw_rare_metals" count="10" />
+  </item>
+  <item id="k2_processing_unit" time="12" produced="2">
+  	<ingredient idref="k2_advanced_circuit" count="6" />
+  	<ingredient idref="k2_rare_metals" count="3" />
+  	<ingredient idref="k2_sulfuric_acid" count="10" />
+  </item>
+
+  <item id="k2_low_density_structure" time="20" produced="1">
+  	<ingredient idref="k2_copper_plate" count="10" />
+  	<ingredient idref="k2_steel_plate" count="2" />
+  	<ingredient idref="k2_plastic_bar" count="5" />
+  </item>
+  <item id="k2_rocket_fuel" time="16" produced="1">
+  	<ingredient idref="k2_iron_plate" count="1" />
+  	<ingredient idref="k2_light_oil" count="30" />
+  	<ingredient idref="k2_oxygen" count="50" />
+  </item>
+  <item id="k2_rocket_fuel_recipe2" time="16" produced="1">
+  	<ingredient idref="k2_iron_plate" count="1" />
+  	<ingredient idref="k2_ammonia" count="50" />
+  	<ingredient idref="k2_oxygen" count="50" />
+  </item>
+  <item id="k2_rocket_fuel_recipe3" time="16" produced="1">
+  	<ingredient idref="k2_iron_plate" count="1" />
+  	<ingredient idref="k2_hydrogen_chloride" count="50" />
+  	<ingredient idref="k2_oxygen" count="50" />
+  </item>
+  <item id="k2_utility_card" time="20" produced="5">
+  	<ingredient idref="k2_processing_unit" count="5" />
+  	<ingredient idref="k2_low_density_structure" count="5" />
+  	<ingredient idref="k2_rocket_fuel" count="5" />
+  	<ingredient idref="k2_blank_tech_card" count="10" />
+  </item>
+
+  <item id="k2_biomass" time="60" produced="5">
+  	<ingredient idref="k2_petroleum_gas" count="50" />
+  	<ingredient idref="k2_oxygen" count="50" />
+  </item>
+  <item id="k2_biter_research_data" time="40" produced="5">
+  	<ingredient idref="k2_coke" count="5" />
+  	<ingredient idref="k2_biomass" count="10" />
+  	<ingredient idref="k2_steel_plate" count="5" />
+  </item>
+  <item id="k2_military_tech_card" time="20" produced="5">
+  	<ingredient idref="k2_electronic_components" count="5" />
+  	<ingredient idref="k2_blank_tech_card" count="5" />
+  	<ingredient idref="k2_biter_research_data" count="1" />
+  </item>
+
+  <item id="k2_fast_transport_belt" time="3" produced="1">
+  	<ingredient idref="k2_iron_gear_wheel" count="4" />
+  	<ingredient idref="k2_transport_belt" count="1" />
+  </item>
+  <item id="k2_fast_underground_belt" time="2" produced="2">
+  	<ingredient idref="k2_fast_transport_belt" count="10" />
+  	<ingredient idref="k2_underground_belt" count="2" />
+  </item>
+  <item id="k2_fast_splitter" time="2" produced="1">
+  	<ingredient idref="k2_iron_gear_wheel" count="8" />
+  	<ingredient idref="k2_electronic_circuit" count="2" />
+  	<ingredient idref="k2_splitter" count="1" />
+  </item>
+  <item id="k2_loader" time="2" produced="1">
+  	<ingredient idref="k2_iron_beam" count="2" />
+  	<ingredient idref="k2_iron_gear_wheel" count="10" />
+  	<ingredient idref="k2_transport_belt" count="1" />
+  </item>
+  <item id="k2_fast_loader" time="2" produced="1">
+  	<ingredient idref="k2_iron_gear_wheel" count="10" />
+  	<ingredient idref="k2_fast_transport_belt" count="1" />
+  	<ingredient idref="k2_loader" count="2" />
+  </item>
+
+  <item id="k2_iron_stick" time="0.5" produced="2">
+  	<ingredient idref="k2_iron_plate" count="1" />
+  </item>
+  <item id="k2_inserter_parts" time="1" produced="1">
+  	<ingredient idref="k2_iron_stick" count="2" />
+  	<ingredient idref="k2_iron_gear_wheel" count="2" />
+  </item>
+  <item id="k2_inserter" time="0.5" produced="1">
+  	<ingredient idref="k2_inserter_parts" count="1" />
+  	<ingredient idref="k2_automation_core" count="1" />
+  </item>
+  <item id="k2_long_handed_inserter" time="0.5" produced="1">
+  	<ingredient idref="k2_iron_stick" count="2" />
+  	<ingredient idref="k2_inserter_parts" count="1" />
+  	<ingredient idref="k2_automation_core" count="1" />
+  </item>
+  <item id="k2_fast_inserter" time="0.5" produced="1">
+  	<ingredient idref="k2_steel_plate" count="1" />
+  	<ingredient idref="k2_inserter_parts" count="1" />
+  	<ingredient idref="k2_electronic_circuit" count="1" />
+  </item>
+  <item id="k2_steel_gear_wheel" time="0.5" produced="1">
+  	<ingredient idref="k2_steel_plate" count="1" />
+  </item>
+  <item id="k2_stack_inserter" time="0.5" produced="1">
+  	<ingredient idref="k2_steel_plate" count="1" />
+  	<ingredient idref="k2_steel_gear_wheel" count="2" />
+  	<ingredient idref="k2_inserter_parts" count="1" />
+  	<ingredient idref="k2_advanced_circuit" count="2" />
+  </item>
+
+  <item id="k2_assembling_machine_1" time="1" produced="1">
+  	<ingredient idref="k2_iron_beam" count="4" />
+  	<ingredient idref="k2_iron_gear_wheel" count="5" />
+  	<ingredient idref="k2_automation_core" count="2" />
+  </item>
+  <item id="k2_assembling_machine_2" time="2" produced="1">
+  	<ingredient idref="k2_steel_plate" count="2" />
+  	<ingredient idref="k2_iron_gear_wheel" count="5" />
+  	<ingredient idref="k2_electronic_circuit" count="3" />
+  	<ingredient idref="k2_assembling_machine_1" count="1" />
+  </item>
+
+  <item id="k2_electric_mining_drill" time="2" produced="1">
+  	<ingredient idref="k2_iron_beam" count="2" />
+  	<ingredient idref="k2_iron_gear_wheel" count="5" />
+  	<ingredient idref="k2_automation_core" count="2" />
+  </item>
 </factorio_calc_item_db>
