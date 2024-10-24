@@ -202,7 +202,7 @@
   <item id="blue_science" name="Blue Science" time="24" produced="2">
     <ingredient idref="adv_circuit" count="3" />
     <ingredient idref="engine" count="2" />
-    <ingredient idref="solid_fuel" count="1" />
+    <ingredient idref="sulfur" count="1" />
   </item>
   <item id="centrifuge" name="Centrifuge" time="4" produced="1">
     <ingredient idref="concrete" count="100" />
