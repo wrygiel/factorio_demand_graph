@@ -58,8 +58,9 @@
   <item id="pipe" name="Pipe" time="1/2" produced="1">
     <ingredient idref="iron" count="1" />
   </item>
-  <item id="rocket_fuel" name="Rocket Fuel" time="30" produced="1">
+  <item id="rocket_fuel" name="Rocket Fuel" time="15" produced="1">
     <ingredient idref="solid_fuel" count="10" />
+    <ingredient idref="light_oil" count="10" />
   </item>
   <item id="steel" name="Steel" time="16" produced="1">
     <ingredient idref="iron" count="5" />
@@ -267,6 +268,14 @@
     <ingredient idref="circuit" count="3" />
     <ingredient idref="steel" count="1" />
   </item>
+  <item id="logistic_robot" name="Logistic Robot" time="0.5" produced="1">
+    <ingredient idref="robot_frame" count="1" />
+    <ingredient idref="adv_circuit" count="2" />
+  </item>
+  <item id= "construction_robot" name="Construction Robot" time="0.5" produced="1">
+    <ingredient idref="robot_frame" count="1" />
+    <ingredient idref="circuit" count="2" />
+  </item>
   <item id="rocket_control" name="Rocket Control" time="30" produced="1">
     <ingredient idref="speed_module_1" count="1" />
     <ingredient idref="processing_unit" count="1" />
@@ -308,6 +317,33 @@
     <ingredient idref="copper" count="5" />
     <ingredient idref="iron_stick" count="8" />
     <ingredient idref="steel" count="5" />
+  </item>
+  <item id="steel_chest" name="Steel Chest" time="0.5" produced="1">
+    <ingredient idref="steel" count="8" />
+  </item>
+  <item id="passive_provider_chest" name="Passive Provider Chest" time="0.5" produced="1">
+    <ingredient idref="steel_chest" count="1" />
+    <ingredient idref="circuit" count="3" />
+    <ingredient idref="adv_circuit" count="1" />
+  </item>
+  <item id="storage_chest" name="Storage Chest" time="0.5" produced="1">
+    <ingredient idref="steel_chest" count="1" />
+    <ingredient idref="circuit" count="3" />
+    <ingredient idref="adv_circuit" count="1" />
+  </item>
+  <item id="space_platform_foundation" name="Space Platform Foundation" time="10" produced="1">
+    <ingredient idref="steel" count="20" />
+    <ingredient idref="wire" count="20" />
+  </item>
+  <item id="space_platform_starter_pack" name="Space Platform Starter Pack" time="60" produced="1">
+    <ingredient idref="steel" count="20" />
+    <ingredient idref="processing_unit" count="20" />
+    <ingredient idref="space_platform_foundation" count="60" />
+  </item>
+  <item id="asteroid_collector" name="Asteroid Collector" time="10" produced="1">
+    <ingredient idref="processing_unit" count="5" />
+    <ingredient idref="electric_engine" count="8" />
+    <ingredient idref="low_density_struct" count="20" />
   </item>
 
   <!-- Krastorio 2 items (that's barely started...) -->
