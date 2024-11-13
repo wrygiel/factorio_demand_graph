@@ -1,15 +1,70 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <factorio_calc_item_db version="1.0">
   <item id="coal" name="Coal" />
-  <item id="copper" name="Copper" />
+  <item id="copper_ore" name="Copper Ore" />
   <item id="iron_ore" name="Iron Ore" />
   <item id="light_oil" name="Light Oil" />
   <item id="lube" name="Lube" />
   <item id="pet_gas" name="Pet Gas" />
   <item id="stone" name="Stone" />
   <item id="water" name="Water" />
+  <item id="hot_lava_tile" />
+  <item id="tungsten_ore_tile" />
+  <item id="calcite_tile" />
+
+  <!-- Filter: Vulcanus -->
+  <item id="sulfuric_acid" name="Sulfuric Acid" />
+
+  <item id="calcite" time="2" produced="1">
+    <ingredient idref="calcite_tile" count="1" />
+  </item>
+  <item id="lava" time="1" produced="1200">
+    <ingredient idref="hot_lava_tile" count="1" />
+  </item>
+  <item id="tungsten_ore" time="10/25" produced="1">
+    <ingredient idref="tungsten_ore_tile" count="1" />
+  </item>
+  <item id="molten_iron" time="16" produced="250">
+    <!-- side product: 10x stone -->
+    <ingredient idref="calcite" count="1" />
+    <ingredient idref="lava" count="500" />
+  </item>
+  <item id="molten_copper" time="16" produced="250">
+    <!-- side product: 15x stone -->
+    <ingredient idref="calcite" count="1" />
+    <ingredient idref="lava" count="500" />
+  </item>
+  <item id="tungsten_plate" time="10" produced="1">
+    <ingredient idref="tungsten_ore" count="4" />
+    <ingredient idref="molten_iron" count="10" />
+  </item>
+  <item id="carbon" time="1" produced="1">
+    <ingredient idref="coal" count="2" />
+    <ingredient idref="sulfuric_acid" count="20" />
+  </item>
+  <item id="tungsten_carbide" time="10" produced="1">
+    <ingredient idref="carbon" count="1" />
+    <ingredient idref="tungsten_ore" count="2" />
+    <ingredient idref="sulfuric_acid" count="10" />
+  </item>
+  <item id="orange_science" time="10" produced="1">
+    <ingredient idref="tungsten_carbide" count="3" />
+    <ingredient idref="tungsten_plate" count="2" />
+    <ingredient idref="molten_copper" count="200" />
+  </item>
+
+  <!-- Filter: Nauvis -->
+  <!--
   <item id="iron" name="Iron" time="16/5" produced="1">
     <ingredient idref="iron_ore" count="1" />
+  </item>
+  -->
+  <item id="iron" name="Iron" time="16/5" produced="1">
+    <ingredient idref="iron_ore" count="1" />
+  </item>
+
+  <item id="copper" name="Copper" time="16/5" produced="1">
+    <ingredient idref="copper_ore" count="1" />
   </item>
   <item id="plastic" name="Plastic" time="1" produced="2">
     <ingredient idref="coal" count="1" />
@@ -25,9 +80,19 @@
     <ingredient idref="water" count="30" />
     <ingredient idref="pet_gas" count="30" />
   </item>
+
+  <!-- Filter: Nauvis -->
+  <!--
   <item id="wire" name="Wire" time="1/2" produced="2">
     <ingredient idref="copper" count="1" />
   </item>
+  -->
+
+  <!-- Filter: Vulcanus -->
+  <item id="wire" name="Wire" time="1" produced="2">
+    <ingredient idref="molten_copper" count="5" />
+  </item>
+
   <item id="bullets" name="Bullets" time="1" produced="1">
     <ingredient idref="iron" count="4" />
   </item>
@@ -65,11 +130,16 @@
   <item id="steel" name="Steel" time="16" produced="1">
     <ingredient idref="iron" count="5" />
   </item>
+
+  <!-- Filter: Nauvis -->
+  <!--
   <item id="sulfuric_acid" name="Sulfuric Acid" time="1" produced="50">
     <ingredient idref="sulfur" count="5" />
     <ingredient idref="iron" count="1" />
     <ingredient idref="water" count="100" />
   </item>
+  -->
+
   <item id="wall" name="Wall" time="1/2" produced="1">
     <ingredient idref="stone_brick" count="5" />
   </item>
@@ -124,11 +194,23 @@
     <ingredient idref="inserter" count="1" />
     <ingredient idref="iron" count="2" />
   </item>
+
+  <!-- Nauvis -->
+  <!--
   <item id="low_density_struct" name="Low Density Struct" time="20" produced="1">
     <ingredient idref="steel" count="2" />
     <ingredient idref="copper" count="20" />
     <ingredient idref="plastic" count="5" />
   </item>
+  -->
+
+  <!-- Vulcanus -->
+  <item id="low_density_struct" name="Low Density Struct" time="15" produced="1">
+    <ingredient idref="plastic" count="5" />
+    <ingredient idref="molten_iron" count="80" />
+    <ingredient idref="molten_copper" count="250" />
+  </item>
+
   <item id="medium_pole" name="Medium Pole" time="1/2" produced="1">
     <ingredient idref="steel" count="2" />
     <ingredient idref="iron_stick" count="4" />
@@ -346,7 +428,14 @@
     <ingredient idref="low_density_struct" count="20" />
   </item>
 
+  <item id="rocket_part" time="3" produced="1">
+    <ingredient idref="low_density_struct" count="1" />
+    <ingredient idref="processing_unit" count="1" />
+    <ingredient idref="rocket_fuel" count="1" />
+  </item>
+
   <!-- Krastorio 2 items (that's barely started...) -->
+  <!--
   <item id="k2_iron_ore" />
   <item id="k2_iron_plate" time="16" produced="5">
     <ingredient idref="k2_iron_ore" count="10" />
@@ -400,7 +489,7 @@
   	<ingredient idref="k2_coal" count="1" />
   	<ingredient idref="k2_petroleum_gas" count="20" />
   </item>
-  <item id="k2_sand" time="1" produced="7"> <!-- WRTODO: 7.5 -->
+  <item id="k2_sand" time="1" produced="7">
   	<ingredient idref="k2_stone" count="3" />
   </item>
   <item id="k2_quartz" time="2.1" produced="6">
@@ -620,4 +709,5 @@
   	<ingredient idref="k2_iron_gear_wheel" count="5" />
   	<ingredient idref="k2_automation_core" count="2" />
   </item>
+  -->
 </factorio_calc_item_db>
